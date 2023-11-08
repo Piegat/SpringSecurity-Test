@@ -20,21 +20,21 @@ public class UsuarioService implements UserDetailsService {
     PasswordEncoder encoder;
 
     @Transactional
-    public void demoCreate(){
+    public void Create(){
         Usuario admin = new Usuario();
         Usuario user = new Usuario();
         Usuario cliente = new Usuario();
 
         admin.setUsername("admin");
-        admin.setSenha(encoder.encode("admin"));
+        admin.setPassword(encoder.encode("admin"));
         admin.setRole(Role.ADMIN);
 
         user.setUsername("user");
-        user.setSenha(encoder.encode("user"));
+        user.setPassword(encoder.encode("user"));
         user.setRole(Role.USER);
 
         cliente.setUsername("cliente");
-        cliente.setSenha(encoder.encode("cliente"));
+        cliente.setPassword(encoder.encode("cliente"));
         cliente.setRole(Role.CLIENTE);
 
         repository.save(admin);
@@ -50,7 +50,7 @@ public class UsuarioService implements UserDetailsService {
         }
 
         return User.withUsername(usuario.getUsername())
-                .password(usuario.getSenha())
+                .password(usuario.getPassword())
                 .roles(String.valueOf(usuario.getRole()))
                 .build();
     }

@@ -21,7 +21,7 @@ public class Usuario {
     private String username;
 
     @Column(nullable = false)
-    private String senha;
+    private String password;
 
     @Column(nullable = false)
     private Role role;

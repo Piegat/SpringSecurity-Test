@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.uniamerica</groupId>
-	<artifactId>springsecurity-test</artifactId>
+	<artifactId>springsecurity</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springsecurity-test</name>
 	<description>Testde de Spring Security</description>

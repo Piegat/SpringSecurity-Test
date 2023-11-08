@@ -20,7 +20,7 @@ public class LivreController {
     UsuarioRepository repository;
     @GetMapping("/cadastrar")
     public String criarUsario(){
-        service.demoCreate();
+        service.Create();
         return "Usuarios criados";
     }
     @GetMapping("/getAll")

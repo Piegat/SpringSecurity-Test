@@ -51,7 +51,7 @@ public class SecurityConfig  {
 //    @Bean
 //    UserDetailsService user() {
 //        UserDetails user = User.builder()
-//                .username("jean.buss")
+//                .username("piegat")
 //                .password(encoder().encode("123456"))
 //                .roles("USER")
 //                .build();
