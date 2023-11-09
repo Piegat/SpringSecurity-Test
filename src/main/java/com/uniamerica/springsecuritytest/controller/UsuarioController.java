@@ -1,20 +1,23 @@
 package com.uniamerica.springsecuritytest.controller;
 
+import com.uniamerica.springsecuritytest.entity.Usuario;
+import com.uniamerica.springsecuritytest.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/usuario")
 public class UsuarioController {
+
+    @Autowired
+    private UsuarioService service;
+
     @GetMapping
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public String userPath(){
         return "<h1>USER</h1>";
     }
     @GetMapping("/admin")
-    @PreAuthorize("hasRole('ADMIN')")
     public String admPath(){
         return "<h1>ADMIN</h1>";
     }
@@ -23,4 +26,15 @@ public class UsuarioController {
     public String clientePath(){
         return "<h1>CLIENTE</h1>";
     }
+
+
+    @PostMapping("/post")
+    public String create(@RequestBody Usuario usuario){
+        try{
+            return service.Create(usuario);
+        }catch (Exception e){
+            return  e.getMessage();
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.uniamerica.springsecuritytest.config;
 
+import com.uniamerica.springsecuritytest.service.UsuarioService;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,10 +26,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableMethodSecurity
 public class SecurityConfig  {
     @Autowired
-    private UserDetailsService userDetailsService;
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
+    private UsuarioService userDetailsService;
+
+    protected void authManager(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService);
     }
+
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
@@ -39,6 +42,10 @@ public class SecurityConfig  {
                 .permitAll()
                 .anyRequest()
                 .authenticated());
+
+
+
+        http.csrf(csrf -> csrf.disable());
 
         http.httpBasic(Customizer.withDefaults());
         return http.build();
